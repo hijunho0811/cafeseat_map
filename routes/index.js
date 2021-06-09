@@ -14,12 +14,13 @@ router.get('/upload', (req,res,next)=>{
 });
 
 router.post('/location', (req, res, next) => {
-  const {title, address, lat, lng} = req.body;
+  const {title, address, lat, lng, cafeseat} = req.body;
   let location = new locationModel();
   location.title = title;
   location.address = address;
   location.lat = lat;
   location.lng = lng;
+  location.cafeseat = cafeseat;
   location.save().then(result =>{
     console.log(result);
     res.json({

@@ -94,11 +94,12 @@ function displayPlaces(data){
 }
 
 function displayInfowindow(marker, title, address, lat, lng){
+    var cafeseat = "unknown";
     let content = `
         <div style="padding:25px">
             ${title}<br>
             ${address}<br>
-            <button onClick="onSubmit('${title}', '${address}', ${lat}, ${lng});">등록</button>
+            <button onClick="onSubmit('${title}', '${address}', ${lat}, ${lng}, '${cafeseat}');">등록</button>
         </div>
     `;
 
@@ -121,10 +122,10 @@ function removeMarker(){
     markerList = []
 }
 
-function onSubmit(title, address, lat, lng){
+function onSubmit(title, address, lat, lng, cafeseat){
     $.ajax({
         url : "/location",
-        data : {title, address, lat, lng},
+        data : {title, address, lat, lng, cafeseat},
         type: "POST",
     })
         .done((response) => {
